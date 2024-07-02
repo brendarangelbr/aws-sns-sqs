@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "f7adbf4a-66f8-4a76-b7d4-b0645e06f639",
+		"name": "AWS SNS & SQS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20952423"
+	},
+	"item": [
+		{
+			"name": "V2",
+			"item": [
+				{
+					"name": "/publish",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Hello Georgie, want a balloon?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v2/publish",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"publish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/receive",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/api/v2/receive",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"receive"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "V3",
+			"item": [
+				{
+					"name": "/publish",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Hello Georgie\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v3/publish",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"publish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/receive",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Hello Georgie\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v3/receive",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v3",
+								"receive"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
