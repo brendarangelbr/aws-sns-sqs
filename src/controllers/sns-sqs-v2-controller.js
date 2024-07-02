@@ -8,13 +8,13 @@ AWS.config.update({
 	region: `${process.env.AWS_REGION}`
 });
 
-const topicArn = process.env.SNS_TOPIC_ARN;
-const queueUrl = process.env.SQS_URL;
-
 const sns = new AWS.SNS();
 const sqs = new AWS.SQS();
 
-const publish = (async (req, res) => {
+const topicArn = process.env.SNS_TOPIC_ARN;
+const queueUrl = process.env.SQS_URL;
+
+const publishMessageToSNS = (async (req, res) => {
 	const { message } = req.body;
 	const params = { TopicArn: topicArn };
 
@@ -40,7 +40,7 @@ const publish = (async (req, res) => {
    }
 });
 
-const receive = (async (req, res) => {
+const receiveMessagesFromSQS = (async (req, res) => {
 	const params = {
 		QueueUrl: queueUrl,
 		MaxNumberOfMessages: 10,
@@ -66,6 +66,6 @@ const receive = (async (req, res) => {
 });
 
 module.exports = {
-   publish,
-   receive
+   publishMessageToSNS,
+   receiveMessagesFromSQS
 };

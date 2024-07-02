@@ -9,24 +9,25 @@ const {
    DeleteMessageCommand
 } = require('@aws-sdk/client-sqs');
 
-// Configura el cliente de SNS
+// Configure AWS SDK V3 for SNS client
 const snsClient = new SNSClient({
    region: process.env.AWS_REGION,
    credentials: {
-     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
    }
 });
-const topicArn = process.env.SNS_TOPIC_ARN;
 
-// Configura el cliente de SQS
+// Configure AWS SDK V3 for SQS client
 const sqsClient = new SQSClient({
    region: process.env.AWS_REGION,
    credentials: {
-     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
    }
 });
+
+const topicArn = process.env.SNS_TOPIC_ARN;
 const queueUrl = process.env.SQS_URL;
 
 const publishMessageToSNS = (async (req, res) => {
@@ -42,7 +43,7 @@ const publishMessageToSNS = (async (req, res) => {
 		res.json({
 			MessageId: data.MessageId,
 		});
-    } catch (err) {
+   } catch (err) {
       console.error("Error publishing message to SNS:", err);
 		res.status(500).json({
 			error: err
